@@ -5,11 +5,19 @@
     --text-font-size: 14px;
     --priamary-color: #212121;
     --text-color: #757575;
-    --main-property: background-color, linear cubic-bezier(0.4, 0, 0.2, 1),
-        transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    --first-property: background-color, linear,
-        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --icon-link: opacity 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
+    --link-footer: background-color 250ms linear,
+        transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
+    --button: transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
+    --button-icon: transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        color 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
+    --header-link: color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
 }
 *,
 ::after,
@@ -107,12 +115,13 @@ body {
     line-height: 1.14;
     letter-spacing: 0.02em;
     color: var(--priamary-color);
-    transition: var(--first-property);
+    transition: var(--header-link);
 }
 
 .header-link:hover,
 .header-link:focus {
     color: var(--accent-color);
+    transform: scale(1.03);
 }
 
 .header-link::after {
@@ -124,9 +133,9 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    transform: scaleX(0);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: color 0.1s linear;
+    transition: var(--color);
+    transition: var(--transform);
+    transition: var(--background-color);
 }
 .header-link:hover::after {
     width: 100%;
@@ -154,6 +163,7 @@ body {
 .button-icon:focus {
     fill: var(--accent-color);
     color: var(--accent-color);
+    transform: scale(1.02);
 }
 .phone {
     width: 10px;
@@ -172,7 +182,7 @@ body {
     color: var(--text-color);
     fill: var(--text-color);
     padding: 15px 0px;
-    transition: var(--first-property);
+    transition: var(--button-icon);
 }
 .contacts-icon {
     margin-right: 10px;
@@ -188,8 +198,7 @@ body {
     font-weight: 500;
     color: var(--text-color);
     fill: var(--text-color);
-    transition-property: var(--first-property);
-    transition-timing-function: var(--time-transition);
+    transition: var(--icon-link);
 }
 .contacts-link:hover,
 .contacts-link:focus {
@@ -294,7 +303,7 @@ body {
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    transition: var(--main-property);
+    transition: var(--button);
 }
 .button:hover,
 .button:focus {
@@ -303,6 +312,7 @@ body {
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
         0px 2px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
+    transition: calc(1.2);
 }
 
 /*--portfolio-list--*/
@@ -355,18 +365,8 @@ body {
 .portfolio-animate {
     cursor: pointer;
     width: 100%;
-    height: 406px;
+    height: 410px;
     position: absolute;
-    transition: transform 0.25s linear;
-    transition-property: transform;
-    transition-duration: 0.25s;
-    transition-timing-function: linear;
-    transition-delay: 0s;
-    animation-name: blue-background;
-    animation-duration: 250ms;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation: alternate;
     transition: var(--main-property);
 }
 .portfolio-animate::before {
@@ -380,25 +380,34 @@ body {
     background-color: rgba(33, 150, 243, 0.9);
     opacity: 0;
     cursor: pointer;
-    transition: transform 250mslinear;
-    transition-property: transform;
-    transition-duration: 250ms;
-    transition-timing-function: linear;
+    transition: var(--transform);
+    transition: var(--opacity);
+
+    animation-timing-function: linear;
+    animation-duration: 250ms;
     transition-delay: 0s;
+    animation-name: opacity-text;
+    animation-iteration-count: 1;
+    transform: translateY(0%);
+}
+.portfolio-animate:hover span {
+    transition: transform 250ms linear;
     transform: translateY(0%);
 }
 
 .portfolio-animate:focus::before,
 .portfolio-animate:hover::before {
     opacity: 1;
-    transform: translateY(-50%);
-    animation-direction: alternate-reverse;
+    transform: translateY(-10%);
 }
 .text-animate:focus,
 .text-animate:hover {
     opacity: 1;
-    transform: translateY(-35%);
-    animation-direction: alternate-reverse;
+    transform: translateY(-12%);
+}
+.text-animate:hover span {
+    transition: transform 250ms linear;
+    transform: translateY(0%);
 }
 
 .text-animate {
@@ -409,17 +418,15 @@ body {
     color: #fff;
     line-height: 1.5;
     font-size: 18px;
-    padding: 63px 40px 173px 24px;
+    padding: 63px 40px 170px 24px;
     opacity: 0;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: transform 0.25s linear;
-    transition-property: transform;
-    transition-delay: 0s;
-    animation-name: blue-background;
-    animation-duration: 250ms;
+    transition: transform 250ms linear, opacity 250ms linear;
+    transition-property: transform, opacity;
     animation-timing-function: linear;
+    animation-duration: 250ms;
+    transition-delay: 0s;
+    animation-name: opacity-text;
     animation-iteration-count: 1;
-    animation-direction: alternate-reverse;
     transform: translateY(0%);
 }
 
@@ -528,6 +535,10 @@ body {
     margin-left: auto;
     margin-bottom: 45px;
     width: 612px;
+}
+.btn-primary:hover {
+    background-color: #176eb5;
+    transform: scale(1.03);
 }
 .btn-primary {
     width: 216px;
@@ -660,7 +671,7 @@ body {
     background-color: transparent;
     cursor: pointer;
     color: #afb1b8;
-    transition: var(--main-property);
+    transition: var(--icon-link);
 }
 
 .icons-link:not(:last-child) {
@@ -690,7 +701,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     color: #afb1b8;
-    transition: var(--first-property);
+    transition: var(--link-footer);
 }
 
 .icon-clients {
@@ -718,5 +729,5 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
     color: #fff;
-    transition: var(--main-property);
+    transition: var(--link-footer);
 }
