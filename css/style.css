@@ -18,6 +18,8 @@
     --header-link: color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
         background-color 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
         transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
+    --portfolio-animate: transform 250ms linear cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 250ms linear cubic-bezier(0.4, 0, 0.2, 1);
 }
 *,
 ::after,
@@ -116,6 +118,7 @@ body {
     letter-spacing: 0.02em;
     color: var(--priamary-color);
     transition: var(--header-link);
+    transform: scale(1);
 }
 
 .header-link:hover,
@@ -133,13 +136,15 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    transition: var(--color);
-    transition: var(--transform);
-    transition: var(--background-color);
+    transition: var(--header-link);
+    transform: scaleX(0);
+    transition-duration: 250ms;
+    transform-origin: left;
 }
 .header-link:hover::after {
     width: 100%;
     transform: scaleX(1);
+    transform-origin: right;
 }
 
 /*-contacts-list--*/
@@ -312,7 +317,7 @@ body {
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
         0px 2px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
-    transition: calc(1.2);
+    transform: calc(1.2);
 }
 
 /*--portfolio-list--*/
@@ -367,7 +372,7 @@ body {
     width: 100%;
     height: 410px;
     position: absolute;
-    transition: var(--main-property);
+    transition: var(--portfolio-animate);
 }
 .portfolio-animate::before {
     content: '';
@@ -380,30 +385,33 @@ body {
     background-color: rgba(33, 150, 243, 0.9);
     opacity: 0;
     cursor: pointer;
-    transition: var(--transform);
-    transition: var(--opacity);
-
-    animation-timing-function: linear;
-    animation-duration: 250ms;
-    transition-delay: 0s;
-    animation-name: opacity-text;
-    animation-iteration-count: 1;
-    transform: translateY(0%);
+    transition: var(--portfolio-animate);
+    animation: blue-sguar 250ms linear alternate 0s forwards;
 }
+
 .portfolio-animate:hover span {
     transition: transform 250ms linear;
     transform: translateY(0%);
+    width: 0%;
 }
 
 .portfolio-animate:focus::before,
 .portfolio-animate:hover::before {
     opacity: 1;
-    transform: translateY(-10%);
+    /*  transform: translate(0%);
+    width: 100%;*/
+}
+@keyframes blue-sguar {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: 200px;
+    }
 }
 .text-animate:focus,
 .text-animate:hover {
     opacity: 1;
-    transform: translateY(-12%);
 }
 .text-animate:hover span {
     transition: transform 250ms linear;
@@ -420,7 +428,6 @@ body {
     font-size: 18px;
     padding: 63px 40px 170px 24px;
     opacity: 0;
-    transition: transform 250ms linear, opacity 250ms linear;
     transition-property: transform, opacity;
     animation-timing-function: linear;
     animation-duration: 250ms;
@@ -672,6 +679,11 @@ body {
     cursor: pointer;
     color: #afb1b8;
     transition: var(--icon-link);
+    transition-duration: 450ms;
+}
+@keyframes cons-links {
+    0% {
+    }
 }
 
 .icons-link:not(:last-child) {
