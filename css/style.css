@@ -109,7 +109,7 @@ body {
 .header-link.current:focus {
     color: var(--accent-color);
 }
-.current::after {
+.header-link.current::after {
     content: '';
     display: block;
     width: 100%;
