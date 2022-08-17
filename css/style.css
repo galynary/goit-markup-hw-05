@@ -106,8 +106,12 @@ body {
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
         transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.header-link.current:hover,
-.header-link.current:focus {
+.header-link:hover,
+.header-link:focus {
+    color: var(--accent-color);
+    opacity: 1;
+}
+.current.link {
     color: var(--accent-color);
 }
 .header-link.current::after {
@@ -120,14 +124,8 @@ body {
     bottom: -11px;
     left: 0;
     border-radius: 2px;
-    opacity: 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.current:hover::after,
-.current:focus:after {
-    opacity: 1;
-}
-
 /*-contacts-list--*/
 .contacts-list {
     margin-left: auto;
@@ -223,6 +221,7 @@ body {
     right: 8px;
     width: 30px;
     height: 30px;
+    background: transparent;
 }
 
 .icon-close {
@@ -291,9 +290,10 @@ body {
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    transition: backround-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
         color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button:hover,
 .button:focus {
@@ -577,14 +577,14 @@ body {
 }
 .text-work {
     position: absolute;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    height: 70px;
     background-color: rgba(47, 48, 58, 0.8);
     font-weight: 700;
     font-size: 14px;
     line-height: 1.14;
-    text-align: center;
     align-items: center;
-    padding: 27px 0px;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #fff;
@@ -634,8 +634,9 @@ body {
     background-color: transparent;
     cursor: pointer;
     color: #afb1b8;
-    transition: backround-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icons-link:not(:last-child) {
@@ -665,8 +666,9 @@ body {
     border-radius: 4px;
     cursor: pointer;
     color: #afb1b8;
-    transition: backround-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-clients {
@@ -696,7 +698,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
     color: #fff;
-    transition: backround-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
         transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .icons-link-footer:focus .icon-team,
